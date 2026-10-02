@@ -1,2 +1,8 @@
 boto3
 awscli
+pymupdf
+Flask 
+Flask-SQLAlchemy 
+Flask-Migrate 
+Flask-Login 
+Flask-Bcrypt

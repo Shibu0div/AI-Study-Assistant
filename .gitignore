@@ -2,3 +2,4 @@
 .vscode/
 test_aws.py
 bedrock_test.py
+data/
