@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Sign Up | AI Study Assistant{% endblock %}
+{% block content %}
+<section class="auth-page">
+  <div class="auth-card">
+    <div class="auth-heading"><span class="eyebrow">GET STARTED</span><h1>Create your account</h1><p>Set up your personal AI study workspace.</p></div>
+    <form method="POST" action="{{ url_for('signup') }}" class="auth-form">
+      <label for="username">Username</label>
+      <input id="username" name="username" type="text" required autocomplete="username">
+      <label for="email_id">Email</label>
+      <input id="email_id" name="email_id" type="email" required autocomplete="email">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required autocomplete="new-password">
+      <button class="button primary full" type="submit">Create Account</button>
+    </form>
+    <p class="auth-footer">Already have an account? <a href="{{ url_for('login') }}">Log in</a></p>
+  </div>
+</section>
+{% endblock %}

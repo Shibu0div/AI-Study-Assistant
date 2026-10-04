@@ -1,6 +1,6 @@
 import boto3
-from config import AWS_REGION, BEDROCK_MODEL_ID, MAX_OUTPUT_TOKENS 
-from knowledge_base import retrieve_context
+from aws_backend.config import AWS_REGION, BEDROCK_MODEL_ID, MAX_OUTPUT_TOKENS 
+from aws_backend.knowledge_base import retrieve_context
 
 client = boto3.client(
     "bedrock-runtime", 

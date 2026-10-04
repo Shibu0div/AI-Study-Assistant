@@ -1,6 +1,6 @@
-from knowledge_base import retrieve_context 
+from aws_backend.knowledge_base import retrieve_context
 
-from bedrock import ask_AI 
+from aws_backend.bedrock import ask_AI 
 
 def explain_from_knowledge_base(question):
     contexts = retrieve_context(question,number_of_results=3) 
@@ -28,4 +28,4 @@ Question:
 
 Give a clear and concise answer.
 '''
-    return ask_AI(prompt,max_tokens=100)
+    return ask_AI(prompt,max_tokens=300)

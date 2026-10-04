@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Study | AI Study Assistant{% endblock %}
+{% block content %}
+<section class="study-page">
+  <div class="study-topbar">
+    <div>
+      <span class="eyebrow">STUDY WORKSPACE</span>
+      <h1>What do you want to study?</h1>
+      <p>Select a mode and use your study material with the AI assistant.</p>
+    </div>
+    <div class="account-chip"><span class="account-dot"></span>{{ current_user.username }}</div>
+  </div>
+
+  <div class="study-shell">
+    <aside class="mode-panel">
+      <div class="mode-panel-heading">STUDY MODES</div>
+
+      <button type="button" class="mode-btn active" data-mode="ask">
+        <span class="mode-number">01</span><span><strong>Ask</strong><small>Question answering</small></span>
+      </button>
+      <button type="button" class="mode-btn" data-mode="summarize">
+        <span class="mode-number">02</span><span><strong>Summarize</strong><small>Topic summary</small></span>
+      </button>
+      <button type="button" class="mode-btn" data-mode="quiz">
+        <span class="mode-number">03</span><span><strong>Quiz</strong><small>Practice questions</small></span>
+      </button>
+      <button type="button" class="mode-btn" data-mode="flashcards">
+        <span class="mode-number">04</span><span><strong>Flashcards</strong><small>Quick revision</small></span>
+      </button>
+
+      <div class="tech-card">
+        <span class="tech-label">AI STACK</span>
+        <strong>Amazon Bedrock</strong>
+        <span>Nova 2 Lite · Knowledge Base</span>
+      </div>
+    </aside>
+
+    <section class="workspace-card">
+      <div class="workspace-heading">
+        <div>
+          <span class="mode-label" id="mode-label">ASK</span>
+          <h2 id="mode-title">Ask a question</h2>
+          <p id="mode-description">Ask something about the study material you provided.</p>
+        </div>
+        <div class="live-badge"><span></span> Ready</div>
+      </div>
+
+      <form id="study-form" method="POST" action="{{ url_for('ask') }}">
+        <div class="input-group">
+          <label id="input-label" for="question">Your question</label>
+          <textarea id="question" name="question" rows="8" placeholder="e.g. Explain the main concept in simple terms..." required></textarea>
+        </div>
+
+        <div id="quiz-options" class="quiz-options" hidden>
+          <div>
+            <label for="num-questions">Number of questions</label>
+            <p>Choose how many questions the backend should generate.</p>
+          </div>
+          <input id="num-questions" name="num_questions" type="number" min="1" max="20" value="5" disabled>
+        </div>
+
+        <div class="form-bottom">
+          <span class="form-hint" id="form-hint">Answers are generated from your study material.</span>
+          <button id="submit-button" class="button primary" type="submit">Ask Question</button>
+        </div>
+      </form>
+    </section>
+  </div>
+</section>
+{% endblock %}

@@ -3,3 +3,5 @@
 test_aws.py
 bedrock_test.py
 data/
+__pycache__/
+migrations/

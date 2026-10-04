@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Quiz | AI Study Assistant{% endblock %}
+{% block content %}
+<section class="interactive-page">
+  <div class="interactive-header">
+    <div>
+      <span class="eyebrow">INTERACTIVE QUIZ</span>
+      <h1>{{ topic }}</h1>
+      <p>Choose an answer for each question, then submit to see your score.</p>
+    </div>
+    <div class="token-badge">{{ tokens }} tokens</div>
+  </div>
+
+  {% if quiz %}
+  <form id="quiz-form" class="interactive-card">
+    {% for item in quiz %}
+    {% set q_index = loop.index0 %}
+    <article class="quiz-question" data-correct="{{ item.correct_answer }}">
+      <div class="question-top">
+        <span>Question {{ loop.index }} of {{ quiz|length }}</span>
+      </div>
+      <h2>{{ item.question }}</h2>
+
+      <div class="quiz-options-list">
+        {% for option in item.options %}
+        <label class="quiz-option">
+          <input type="radio" name="question-{{ q_index }}" value="{{ loop.index0 }}">
+          <span class="option-letter">{{ "ABCD"[loop.index0] }}</span>
+          <span>{{ option }}</span>
+        </label>
+        {% endfor %}
+      </div>
+
+      <div class="question-feedback" hidden>
+        <strong></strong>
+        <p>{{ item.explanation }}</p>
+      </div>
+    </article>
+    {% endfor %}
+
+    <div class="quiz-actions">
+      <span id="quiz-progress">0 / {{ quiz|length }} answered</span>
+      <button class="button primary" type="submit">Submit Quiz</button>
+    </div>
+  </form>
+
+  <section id="quiz-result" class="score-card" hidden>
+    <span class="eyebrow">RESULT</span>
+    <h2 id="score-text"></h2>
+    <p id="score-message"></p>
+    <button id="retry-quiz" class="button secondary" type="button">Try Again</button>
+  </section>
+  {% else %}
+  <section class="interactive-card empty-state">
+    <h2>No quiz was generated.</h2>
+    <p>Please go back and try another topic.</p>
+    <a class="button secondary" href="{{ url_for('study') }}">Back to Study</a>
+  </section>
+  {% endif %}
+</section>
+<script src="{{ url_for('static', filename='js/quiz.js') }}"></script>
+{% endblock %}

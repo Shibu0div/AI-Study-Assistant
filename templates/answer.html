@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Result | AI Study Assistant{% endblock %}
+{% block content %}
+<section class="result-page">
+  <div class="result-card">
+    <div class="result-header">
+      <div><span class="eyebrow">STUDY RESULT</span><h1>Your result</h1></div>
+      <div class="token-badge">{{ tokens }} tokens</div>
+    </div>
+    <div class="question-box"><span>Your input</span><p>{{ question }}</p></div>
+    <div class="answer-box"><span>AI response</span><div class="answer-content">{{ answer }}</div></div>
+    <a class="button secondary" href="{{ url_for('study') }}">Back to Study</a>
+  </div>
+</section>
+{% endblock %}

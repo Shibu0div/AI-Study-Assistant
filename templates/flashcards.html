@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %}Flashcards | AI Study Assistant{% endblock %}
+{% block content %}
+<section class="interactive-page">
+  <div class="interactive-header">
+    <div>
+      <span class="eyebrow">FLASHCARDS</span>
+      <h1>{{ topic }}</h1>
+      <p>Click the card to reveal the answer.</p>
+    </div>
+    <div class="token-badge">{{ tokens }} tokens</div>
+  </div>
+
+  {% if cards %}
+  <section class="flashcard-workspace"
+           data-cards='{{ cards|tojson|forceescape }}'>
+    <div class="flashcard-count" id="flashcard-count">Card 1 of {{ cards|length }}</div>
+
+    <button id="flashcard" class="flashcard" type="button" aria-label="Flip flashcard">
+      <span class="flashcard-label">QUESTION</span>
+      <strong id="flashcard-front"></strong>
+      <span class="flashcard-hint">Click to reveal answer</span>
+      <span id="flashcard-back" hidden></span>
+    </button>
+
+    <div class="flashcard-controls">
+      <button id="prev-card" class="button secondary" type="button">← Previous</button>
+      <span id="card-status">Not reviewed</span>
+      <button id="next-card" class="button primary" type="button">Next →</button>
+    </div>
+
+    <div class="flashcard-rating">
+      <button id="review-card" class="rating-button" type="button">Needs Review</button>
+      <button id="known-card" class="rating-button" type="button">✓ I Know This</button>
+    </div>
+  </section>
+  {% else %}
+  <section class="interactive-card empty-state">
+    <h2>No flashcards were generated.</h2>
+    <p>Please go back and try another topic.</p>
+    <a class="button secondary" href="{{ url_for('study') }}">Back to Study</a>
+  </section>
+  {% endif %}
+</section>
+<script src="{{ url_for('static', filename='js/flashcards.js') }}"></script>
+{% endblock %}
