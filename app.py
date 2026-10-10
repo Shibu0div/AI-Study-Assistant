@@ -8,7 +8,7 @@ db = SQLAlchemy()
 
 def create_application():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:SHIBU@localhost:3306/AiStudyAssistant'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://USER:PASSWORD@localhost:3306/AiStudyAssistant'
     app.secret_key = os.environ.get('SECRET_KEY', 'a-safe-fallback-for-local-dev')
 
     db.init_app(app) 
